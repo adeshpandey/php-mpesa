@@ -55,7 +55,7 @@ class PhpMpesa
         return $this;
     }
 
-    public function b2c($event_id, $isdn, $amt, $ref_id, $appName, $cbUrl)
+    public function b2c($event_id, $isdn, $amt, $ref_id, $appName, $cbUrl, $cmd_id)
     {
         $d = new \DateTime();
         $this->_mPesaClient->__setSoapHeaders(new \SoapHeader($this->_namespace, "EventID", $event_id));
@@ -86,8 +86,8 @@ class PhpMpesa
                 </dataItem> <dataItem>
                 <name>CallBackDestination</name> <type>String</type> <value>%s</value>
                 </dataItem> <dataItem>
-                <name>CommandID</name> <type>String</type> <value>InitTrans_one4allb2c</value>
-                </dataItem>", $appName, $isdn, $amt,  $d->getTimestamp(), $ref_id, $cbUrl);
+                <name>CommandID</name> <type>String</type> <value>%s</value>
+                </dataItem>", $appName, $isdn, $amt,  $d->getTimestamp(), $ref_id, $cbUrl, $cmd_id);
 
         $r = $this->_mPesaClient->getGenericResult([new \SoapVar($req, XSD_ANYXML)]);
 
