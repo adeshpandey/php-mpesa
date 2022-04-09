@@ -1,0 +1,18 @@
+{
+    "name": "adeshpandey/php-mpesa",
+    "description": "Mpesa Client implementation",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Adeshpandey\\PhpMpesa\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Adesh Pandey",
+            "email": "adesh.pandey10@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
