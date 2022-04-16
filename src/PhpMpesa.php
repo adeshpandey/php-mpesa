@@ -55,10 +55,11 @@ class PhpMpesa
         return $this;
     }
 
-    public function b2c($event_id, $isdn, $amt, $ref_id, $appName, $cbUrl, $cmd_id)
+    public function b2c($event_id, $token, $isdn, $amt, $ref_id, $appName, $cbUrl, $cmd_id)
     {
         $d = new \DateTime();
         $this->_mPesaClient->__setSoapHeaders(new \SoapHeader($this->_namespace, "EventID", $event_id));
+        $this->_mPesaClient->__setSoapHeaders(new \SoapHeader($this->_namespace, "Token", $token));
 
         $req = sprintf("<dataItem> <name>ServiceProviderName</name>
                 <type>String</type>
@@ -94,11 +95,12 @@ class PhpMpesa
         return $r;
     }
 
-    public function c2b($event_id, $msisdn, $provider_code, $currency, $amt, $ref_id, $cmd_id, $cb_url)
+    public function c2b($event_id, $token, $msisdn, $provider_code, $currency, $amt, $ref_id, $cmd_id, $cb_url)
     {
 
         $d = new \DateTime();
         $this->_mPesaClient->__setSoapHeaders(new \SoapHeader($this->_namespace, "EventID", $event_id));
+        $this->_mPesaClient->__setSoapHeaders(new \SoapHeader($this->_namespace, "Token", $token));
 
         $req = sprintf("<dataItem>
             <name>CustomerMSISDN</name> <type>String</type>
