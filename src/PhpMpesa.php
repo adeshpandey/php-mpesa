@@ -130,7 +130,7 @@ class PhpMpesa
         return $r;
     }
 
-    public function c2b($event_id, $token, $msisdn, $provider_code, $currency, $amt, $ref_id, $cmd_id, $cb_url)
+    public function c2b($event_id, $token, $msisdn, $provider_code, $currency, $amt, $ref_id, $cmd_id, $cb_url, $initial_name, $surname)
     {
 
         $d = new \DateTime();
@@ -157,11 +157,6 @@ class PhpMpesa
     <value>%d</value>
 </dataItem>
 <dataItem>
-    <name>Date</name>
-    <type>String</type>
-    <value>%s</value>
-</dataItem>
-<dataItem>
     <name>ThirdPartyReference</name>
     <type>String</type>
     <value>%s</value>
@@ -179,7 +174,7 @@ class PhpMpesa
 <dataItem>
     <name>CallBackChannel</name>
     <type>String</type>
-    <value>4</value>
+    <value>2</value>
 </dataItem>
 <dataItem>
     <name>CallBackDestination</name>
@@ -189,13 +184,13 @@ class PhpMpesa
 <dataItem>
     <name>Surname</name>
     <type>String</type>
-    <value>Surname</value>
+    <value>%s</value>
 </dataItem>
 <dataItem>
     <name>Initials</name>
     <type>String</type>
-    <value>Initials</value>
-</dataItem>", $msisdn, $provider_code, $currency, $amt, $d->getTimestamp(), $ref_id, $cmd_id, $cb_url);
+    <value>%s</value>
+</dataItem>", $msisdn, $provider_code, $currency, $amt, $ref_id, $cmd_id, $cb_url, $initial_name, $surname);
         $r = $this->_mPesaClient->getGenericResult([new \SoapVar($req, XSD_ANYXML)]);
 
         return $r;
